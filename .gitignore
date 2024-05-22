@@ -1,0 +1,8 @@
+zappy_server
+*.so
+*.o
+*.log
+
+doxygen/
+compile_flags.txt
+.vscode/
