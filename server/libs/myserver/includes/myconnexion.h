@@ -58,11 +58,13 @@ typedef struct myconnexion_s {
     unsigned int reply_index;
     unsigned int reply_end_of_cmd_index;
     unsigned int reply_length;
-    
+
     void *data;
 
     const uint8_t *delimiters;
     size_t delimiters_length;
+
+    size_t type;
 
     struct myconnexion_s *next;
 } myconnexion_t;
@@ -74,7 +76,8 @@ typedef struct myconnexion_s {
  * @param delimiter_length how many delimiters are read from packet_delimiter
 */
 myconnexion_t *
-myconnexion_init(int connexion_fd, struct sockaddr_in *config, const uint8_t *packet_delimiter, size_t delimiter_length);
+myconnexion_init(int connexion_fd, struct sockaddr_in *config,
+    const uint8_t *packet_delimiter, size_t delimiter_length);
 /**
  * @ingroup myserver
  * @brief Link a new connexion to a list.
@@ -163,7 +166,7 @@ myconnexion_write_reply_buffer(myconnexion_t *connexion);
 */
 int
 myconnexion_add_in_reply_buffer(myconnexion_t *connexion,
-    const void *src, size_t byte_length, bool addEndCmdChar);
+    const void *src, size_t byte_length, bool add_delimiters);
 
 /**
  * @ingroup myserver
@@ -192,6 +195,22 @@ myconnexion_get_data(myconnexion_t *connexion);
 
 void
 myconnexion_remove_from_list(myconnexion_t **list, myconnexion_t *tmp);
+
+/**
+ * @ingroup myserver
+ * @brief Get the type of connexion.
+ * @return the type of connexion (enum compatible)
+*/
+size_t
+myconnexion_get_type(myconnexion_t *con);
+
+/**
+ * @ingroup myserver
+ * @brief Set the connexion type.
+ * @param type the type of the connexion (enum compatible)
+*/
+void
+myconnexion_set_type(myconnexion_t *con, size_t type);
 
 /**
  * @ingroup myserver

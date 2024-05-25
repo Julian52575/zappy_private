@@ -98,11 +98,9 @@ myconnexion_init(int connexion_fd,
     if (myconnexion_call_init_fun(new, packet_delimiter, delimiter_length) == -1)
         return NULL;
     memcpy(&(new->config), config, sizeof(struct sockaddr_in));
-    new->next = NULL;
     new->fd = connexion_fd;
     new->ip = inet_ntoa(new->config.sin_addr);
     new->port = new->config.sin_port;
     new->status = CL_CONNECTED;
-    new->data = NULL;
     return new;
 }

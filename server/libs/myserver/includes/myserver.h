@@ -46,6 +46,9 @@ typedef struct myserver_s {
 
     const uint8_t *default_delimiters;
     size_t delimiters_length;
+
+    const char *welcome_msg;
+    size_t welcome_length;
 } myserver_t;
 
 
@@ -71,6 +74,11 @@ myserver_destroy(myserver_t **serv);
 */
 myconnexion_t *
 myserver_get_connexion_by_fd(myserver_t *serv, int connexion_fd);
+
+/**
+ * @ingroup myserver
+ * @brief Start the server.
+*/
 void
 myserver_start(myserver_t *serv);
 
@@ -172,6 +180,17 @@ myserver_add_in_all_reply_buffer(myserver_t *server,
 
 /**
  * @ingroup myserver
+ * @brief Add src (with delimiters) to every connexion of provided type.
+ * @param type the type of the connexion (enum compatible)
+ * @param src packet to copy
+ * @param byte_length length of the packet
+*/
+void
+myserver_add_to_connexion_type_buffer(myserver_t *server, size_t type,
+    const void *src, size_t byte_length);
+
+/**
+ * @ingroup myserver
  * @brief Set a ptr to some data to be store inside the server.
  * @param data the ptr to be set.
 */
@@ -185,3 +204,12 @@ myserver_set_data(myserver_t *server, void *data);
 */
 void *
 myserver_get_data(myserver_t *server);
+
+/**
+ * @ingroup myserver
+ * @brief Set a message to be sent to every new connexion.
+ * @param message the message to be sent
+ * @param message_length the length of the message*/
+void
+myserver_set_welcome_message(myserver_t *serv,
+    const void *message, size_t message_length);

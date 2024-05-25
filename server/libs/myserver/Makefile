@@ -31,6 +31,8 @@ SRC_FILES 	=	myserver_init.c \
 				myserver_exec_connexions_command.c \
 				myserver_set_data.c \
 				myserver_add_in_all_reply_buffer.c \
+				myserver_add_to_connexion_type_buffer.c \
+				myserver_set_welcome_message.c \
 				myconnexion_init.c \
 				myconnexion_is_logged_in.c \
 				myconnexion_link.c \
@@ -49,6 +51,7 @@ SRC_FILES 	=	myserver_init.c \
 				myconnexion_shift_buffer.c \
 				myconnexion_set_data.c \
 				myconnexion_get_buffer_info_array.c \
+				myconnexion_set_type.c \
 				myevent_handler_add_event.c \
 				myevent_handler_destroy.c \
 				myevent_handler_get_function.c \
@@ -74,6 +77,8 @@ OBJ_FILES 	=	myserver_init.o \
 				myserver_set_data.o \
 				myserver_exec_connexions_command.o \
 				myserver_add_in_all_reply_buffer.o \
+				myserver_add_to_connexion_type_buffer.o \
+				myserver_set_welcome_message.o \
 				myconnexion_init.o \
 				myconnexion_is_logged_in.o \
 				myconnexion_link.o \
@@ -90,6 +95,7 @@ OBJ_FILES 	=	myserver_init.o \
 				myconnexion_overwrite_first_command.o \
 				myconnexion_shift_buffer.o \
 				myconnexion_set_data.o \
+				myconnexion_set_type.o \
 				myconnexion_get_buffer_info_array.o \
 				myevent_handler_add_event.o \
 				myevent_handler_destroy.o \
